@@ -1,0 +1,63 @@
+# Libraries
+library(ggplot2)
+library(dplyr)
+library(hrbrthemes)
+library(viridis)
+library(ggpubr)
+library(hms)
+
+# Paths
+# base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
+base_path <- "C:/Users/km2309/Desktop/CSV-Analyser/"
+
+
+# Colors
+axisLabelColor <- "#69b3a2"
+yAxisColor <- "black"
+
+
+# Import CSV from Collectl
+data_csv <- read.csv("collectl_text.txt", na="NA")
+
+
+# Put measurements into dataframe
+measurements <- data.frame(
+  time=data_csv[[2]], 
+  cpu_user=data_csv[[3]],
+  cpu_nice=data_csv[[4]],
+  cpu_system=data_csv[[5]],
+  cpu_wait=data_csv[[6]],
+  cpu_idle=data_csv[[15]]
+)
+
+
+# function to draw line plots
+drawPlot <- function(title, measurement, yAxisLabel) {
+  ggplot(data, aes(x=time_in_seconds, group=1)) +
+    geom_line(aes(y=measurement), color=yAxisColor) +
+    scale_y_continuous(
+      name = yAxisLabel,
+    ) +
+    theme_ipsum() +
+    theme(
+      axis.title.y = element_text(color = axisLabelColor, size=10),
+      axis.title.x = element_text(color = axisLabelColor, size=10),
+      axis.text.x = element_blank(),
+      axis.ticks.x = element_blank(),
+      legend.position = "none",
+    ) +
+    ggtitle(title)
+}
+
+
+# call drawPlot function for each plot
+plot1 <- drawPlot("CPU User", measurements$cpu_user, "CPU-Verbrauch (%)")
+plot2 <- drawPlot("CPU System", measurements$cpu_system, "CPU-Verbrauch (%)")
+
+
+# Build figures with multiple plots
+figure <- ggarrange(
+            plot1, plot2, nrow = 2
+          )
+
+figure
