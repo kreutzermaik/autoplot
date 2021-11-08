@@ -29,7 +29,8 @@ measurements <- data.frame(
     cpu_nice=data_csv[[4]],
     cpu_system=data_csv[[5]],
     cpu_wait=data_csv[[6]],
-    cpu_idle=data_csv[[15]]
+    cpu_idle=data_csv[[15]],
+    mem_used=data_csv[[25]]/1000
 )
 
 
@@ -42,8 +43,8 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
         ) +
         theme_ipsum() +
         theme(
-            axis.title.y = element_text(color = axisLabelColor, size=15),
-            axis.title.x = element_text(color = axisLabelColor, size=15),
+            axis.title.y = element_text(color = axisLabelColor, size=10),
+            axis.title.x = element_text(color = axisLabelColor, size=10),
             axis.text.x = element_blank(),
             axis.ticks.x = element_blank(),
             legend.position = "none",
@@ -63,11 +64,15 @@ cpu_nice_plot <- drawPlot("CPU Nice", "CPU-Verbrauch (%)", measurements$cpu_nice
 cpu_system_plot <- drawPlot("CPU System", "CPU-Verbrauch (%)", measurements$cpu_system, measurements$time)
 cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", measurements$cpu_wait, measurements$time)
 cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", measurements$cpu_idle, measurements$time)
-
+mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$mem_used, measurements$time)
 
 # Build figures with multiple plots
-figure <- ggarrange(
+cpu_figure <- ggarrange(
   cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
+)
+
+mem_figure <- ggarrange(
+  mem_used_plot, nrow = 1
 )
 
 
@@ -77,14 +82,13 @@ dir.create(file.path(export_path), showWarnings = FALSE)
 dir.create(file.path(export_path, date_path), showWarnings = FALSE)
 setwd(file.path(export_path, date_path))
 
-# get filename
-output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
+# get filenames
+cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
+mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
 
-ggexport(figure, filename = paste(output_name), width = 1920, height = 1080)
-
-
-
-
+ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
+ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
 
 
+mem_figure
 
