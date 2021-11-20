@@ -30,19 +30,19 @@ data_csv <- read.csv("collectl.csv", na="NA", header=TRUE, sep=",", row.names=NU
 
 
 # Put measurements into dataframe
-measurements <- data.frame(
-    time=data_csv[[2]], 
-    cpu_user=data_csv[[3]],
-    cpu_nice=data_csv[[4]],
-    cpu_system=data_csv[[5]],
-    cpu_wait=data_csv[[6]],
-    cpu_idle=data_csv[[15]],
-    mem_used=data_csv[[25]]/1000,
-    
-    row.names = NULL, check.rows = FALSE,
-    check.names = TRUE, fix.empty.names = TRUE,
-    stringsAsFactors = default.stringsAsFactors()
-)
+# measurements <- data.frame(
+#     time=data_csv[[2]], 
+#     cpu_user=data_csv[[3]],
+#     cpu_nice=data_csv[[4]],
+#     cpu_system=data_csv[[5]],
+#     cpu_wait=data_csv[[6]],
+#     cpu_idle=data_csv[[15]],
+#     mem_used=data_csv[[25]]/1000,
+#     
+#     row.names = NULL, check.rows = FALSE,
+#     check.names = TRUE, fix.empty.names = TRUE,
+#     stringsAsFactors = default.stringsAsFactors()
+# )
 
 
 # function to draw line plots
@@ -70,12 +70,12 @@ removeWhitespaceAndColon <- function(filename) {
 
 
 # call drawPlot function for each plot
-cpu_user_plot <- drawPlot("CPU User", "CPU-Verbrauch (%)", measurements$cpu_user, measurements$time)
-cpu_nice_plot <- drawPlot("CPU Nice", "CPU-Verbrauch (%)", measurements$cpu_nice, measurements$time)
-cpu_system_plot <- drawPlot("CPU System", "CPU-Verbrauch (%)", measurements$cpu_system, measurements$time)
-cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", measurements$cpu_wait, measurements$time)
-cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", measurements$cpu_idle, measurements$time)
-mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$mem_used, measurements$time)
+cpu_user_plot <- drawPlot("CPU User", "CPU-Verbrauch (%)", data_csv[[3]], data_csv[[2]])
+cpu_nice_plot <- drawPlot("CPU Nice", "CPU-Verbrauch (%)", data_csv[[4]], data_csv[[2]])
+cpu_system_plot <- drawPlot("CPU System", "CPU-Verbrauch (%)", data_csv[[5]], data_csv[[2]])
+cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", data_csv[[6]], data_csv[[2]])
+cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", data_csv[[15]], data_csv[[2]])
+mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", data_csv[[25]], data_csv[[2]])
 
 # Build figures with multiple plots
 cpu_figure <- ggarrange(
