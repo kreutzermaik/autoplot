@@ -1,16 +1,14 @@
 # Packages
 install.packages("ggplot2")
-install.packages("dplyr")
 install.packages("viridis")
-install.packages("ggpubr")
+install.packages("dplyr")
 install.packages("hms")
 install.packages("gridExtra")
 
 # Libraries
 library(ggplot2)
-library(dplyr)
 library(viridis)
-library(ggpubr)
+library(dplyr)
 library(hms)
 library(gridExtra)
 
