@@ -37,7 +37,11 @@ measurements <- data.frame(
     cpu_system=data_csv[[5]],
     cpu_wait=data_csv[[6]],
     cpu_idle=data_csv[[15]],
-    mem_used=data_csv[[25]]/1000
+    mem_used=data_csv[[25]]/1000,
+    
+    row.names = NULL, check.rows = FALSE,
+    check.names = TRUE, fix.empty.names = TRUE,
+    stringsAsFactors = default.stringsAsFactors()
 )
 
 
