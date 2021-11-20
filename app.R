@@ -1,7 +1,6 @@
 # Packages
 install.packages("ggplot2")
 install.packages("dplyr")
-install.packages("hrbrthemes")
 install.packages("viridis")
 install.packages("ggpubr")
 install.packages("hms")
@@ -10,7 +9,6 @@ install.packages("gridExtra")
 # Libraries
 library(ggplot2)
 library(dplyr)
-library(hrbrthemes)
 library(viridis)
 library(ggpubr)
 library(hms)
