@@ -26,7 +26,7 @@ yAxisColor <- "black"
 
 
 # Import CSV from Collectl
-data_csv <- read.csv("collectl.csv", na="NA")
+data_csv <- read.csv("collectl.csv", na="NA", header=TRUE, sep=",", row.names=NULL)
 
 
 # Put measurements into dataframe
