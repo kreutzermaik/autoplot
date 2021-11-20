@@ -4,7 +4,6 @@ install.packages("viridis")
 install.packages("dplyr")
 install.packages("hms")
 install.packages("gridExtra")
-install.packages("hrbrthemes")
 
 # Libraries
 library(ggplot2)
@@ -12,7 +11,6 @@ library(viridis)
 library(dplyr)
 library(hms)
 library(gridExtra)
-library(hrbrthemes)
 
 # Path
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
@@ -53,14 +51,6 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
         geom_line() +
         scale_y_continuous(
             name = yAxisLabel,
-        ) +
-        theme_ipsum() +
-        theme(
-            axis.title.y = element_text(color = axisLabelColor, size=10),
-            axis.title.x = element_text(color = axisLabelColor, size=10),
-            axis.text.x = element_blank(),
-            axis.ticks.x = element_blank(),
-            legend.position = "none",
         ) +
         ggtitle(title)
 }
