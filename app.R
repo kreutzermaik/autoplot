@@ -1,3 +1,12 @@
+# Packages
+install.packages("ggplot2")
+install.packages("dplyr")
+install.packages("hrbrthemes")
+install.packages("viridis")
+install.packages("ggpubr")
+install.packages("hms")
+install.packages("gridExtra")
+
 # Libraries
 library(ggplot2)
 library(dplyr)
@@ -8,8 +17,10 @@ library(hms)
 library(gridExtra)
 
 # Path
-base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
-export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
+#base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
+#export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
+base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 date_path <- toString(Sys.Date())
 
 
@@ -19,7 +30,7 @@ yAxisColor <- "black"
 
 
 # Import CSV from Collectl
-data_csv <- read.csv("collectl_text.txt", na="NA")
+data_csv <- read.csv("collectl.csv", na="NA")
 
 
 # Put measurements into dataframe
