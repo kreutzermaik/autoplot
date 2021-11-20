@@ -4,6 +4,7 @@ install.packages("viridis")
 install.packages("dplyr")
 install.packages("hms")
 install.packages("gridExtra")
+install.packages("hrbrthemes")
 
 # Libraries
 library(ggplot2)
@@ -11,6 +12,7 @@ library(viridis)
 library(dplyr)
 library(hms)
 library(gridExtra)
+library(hrbrthemes)
 
 # Path
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
