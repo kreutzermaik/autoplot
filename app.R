@@ -11,11 +11,11 @@ library("ggpubr")
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
 #export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
 
-#base_path <- "/var/lib/jenkins/workspace/Autoplot/"
-#export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 
-base_path <- "~/workspace/Autoplot/"
-export_path <- "~/workspace/Autoplot/export/"
+# base_path <- "~/workspace/autoplot/"
+# export_path <- "~/workspace/autoplot/export/"
 
 date_path <- toString(Sys.Date())
 
@@ -45,18 +45,12 @@ removeWhitespaceAndColon <- function(filename) {
 
 
 # call drawPlot function for each plot
-# cpu_user_plot <- drawPlot("CPU User", "CPU-Verbrauch (%)", data_csv[[3]], data_csv[[2]])
-# cpu_nice_plot <- drawPlot("CPU Nice", "CPU-Verbrauch (%)", data_csv[[4]], data_csv[[2]])
-# cpu_system_plot <- drawPlot("CPU System", "CPU-Verbrauch (%)", data_csv[[5]], data_csv[[2]])
-# cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", data_csv[[6]], data_csv[[2]])
-# cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", data_csv[[15]], data_csv[[2]])
-
 mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used, measurements$Time)
 
 # # Build figures with multiple plots
-# cpu_figure <- ggarrange(
-#   cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
-# )
+cpu_figure <- ggarrange(
+  cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
+)
 
 mem_figure <- ggarrange(
   mem_used_plot, nrow = 1
@@ -67,7 +61,7 @@ mem_figure <- ggarrange(
 dir.create(file.path(export_path), showWarnings = FALSE)
 
 dir.create(file.path(export_path, date_path), showWarnings = FALSE)
-#setwd(file.path(export_path, date_path))
+setwd(file.path(export_path, date_path))
 
 
 # get filenames
