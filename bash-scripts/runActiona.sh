@@ -1,1 +1,1 @@
-actiona -e actiona-script.ascr -x
+actiona -e ../actiona-script.ascr -x

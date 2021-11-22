@@ -1,2 +1,2 @@
 # R-Skript starten
-Rscript app.R
+Rscript ../app.R

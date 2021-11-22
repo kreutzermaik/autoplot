@@ -1,1 +1,3 @@
-sed -i '1,15d' csv/collectl.csv
+./runActiona.sh
+
+sed -i '1,15d' ../csv/collectl.csv
