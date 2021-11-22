@@ -1,10 +1,10 @@
 # Packages
-install.packages("ggplot2")
-install.packages("viridis")
-install.packages("dplyr")
-install.packages("hms")
-install.packages("gridExtra")
-install.packages("ggpubr")
+# install.packages("ggplot2")
+# install.packages("viridis")
+# install.packages("dplyr")
+# install.packages("hms")
+# install.packages("gridExtra")
+# install.packages("ggpubr")
 
 
 # Libraries
@@ -19,8 +19,13 @@ library(ggpubr)
 # Path
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
 #export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
-base_path <- "/var/lib/jenkins/workspace/Autoplot/"
-export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+
+#base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+#export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+
+base_path <- "~/workspace/Autoplot/"
+export_path <- "~/workspace/Autoplot/export/"
+
 date_path <- toString(Sys.Date())
 
 
@@ -71,16 +76,16 @@ cpu_nice_plot <- drawPlot("CPU Nice", "CPU-Verbrauch (%)", data_csv[[4]], data_c
 cpu_system_plot <- drawPlot("CPU System", "CPU-Verbrauch (%)", data_csv[[5]], data_csv[[2]])
 cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", data_csv[[6]], data_csv[[2]])
 cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", data_csv[[15]], data_csv[[2]])
-mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", data_csv[[25]], data_csv[[2]])
+mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", data_csv[[25]] / 1000, data_csv[[2]])
 
 # Build figures with multiple plots
-cpu_figure <- ggarrange(
-  cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
-)
-
-mem_figure <- ggarrange(
-  mem_used_plot, nrow = 1
-)
+# cpu_figure <- ggarrange(
+#   cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
+# )
+# 
+# mem_figure <- ggarrange(
+#   mem_used_plot, nrow = 1
+# )
 
 
 # Create directories for exports with todays date and save figures into it
@@ -90,12 +95,11 @@ dir.create(file.path(export_path, date_path), showWarnings = FALSE)
 setwd(file.path(export_path, date_path))
 
 # get filenames
-cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
-mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
+# cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
+# mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
+# 
+# ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
+# ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
 
-ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
-ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
-
-
-mem_figure
+ggexport(mem_used_plot, filename = "Test.png")
 
