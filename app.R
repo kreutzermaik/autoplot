@@ -26,14 +26,16 @@ yAxisColor <- "black"
 
 
 # Import CSV from Collectl
-measurements <- read.csv(file = "csv/collectl.csv", na="NA", stringsAsFactors = FALSE, header=TRUE, sep=",", row.names=NULL)
+measurements <- read.csv(file = "csv/collectl.csv", na="NA")
+
 
 # function to draw line plots
 drawPlot <- function(title, yAxisLabel, measurement, time) {
     ggplot(measurements, aes(x=time, y=measurement, group=1)) +
       geom_line() +
-      xlab("Year") +
-      ylab("Annual Average Temperature in 20 year increments")
+      xlab("Time in seconds") +
+      ylab(yAxisLabel) +
+      ggtitle(title)
 }
 
 removeWhitespaceAndColon <- function(filename) {
