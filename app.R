@@ -39,24 +39,24 @@ data_csv <- read.csv("csv/collectl.csv", na="NA", header=TRUE, sep=",", row.name
 
 
 # Put measurements into dataframe
-# measurements <- data.frame(
-#     time=data_csv[[2]], 
-#     cpu_user=data_csv[[3]],
-#     cpu_nice=data_csv[[4]],
-#     cpu_system=data_csv[[5]],
-#     cpu_wait=data_csv[[6]],
-#     cpu_idle=data_csv[[15]],
-#     mem_used=data_csv[[25]]/1000,
-#     
-#     row.names = NULL, check.rows = FALSE,
-#     check.names = TRUE, fix.empty.names = TRUE,
-#     stringsAsFactors = default.stringsAsFactors()
-# )
+measurements <- data.frame(
+    time=data_csv[[2]], 
+    cpu_user=data_csv[[3]],
+    cpu_nice=data_csv[[4]],
+    cpu_system=data_csv[[5]],
+    cpu_wait=data_csv[[6]],
+    cpu_idle=data_csv[[15]],
+    mem_used=data_csv[[25]]/1000,
+    
+    row.names = NULL, check.rows = FALSE,
+    check.names = TRUE, fix.empty.names = TRUE,
+    stringsAsFactors = default.stringsAsFactors()
+)
 
 
 # function to draw line plots
 drawPlot <- function(title, yAxisLabel, measurement, time) {
-    ggplot(data_csv, aes(x=time, y=measurement, group=1)) +
+    ggplot(measurements, aes(x=time, y=measurement, group=1)) +
         geom_line() +
         scale_y_continuous(
             name = yAxisLabel,
@@ -79,29 +79,26 @@ cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", data_csv[[15]], data_
 mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", data_csv[[25]] / 1000, data_csv[[2]])
 
 # Build figures with multiple plots
-# cpu_figure <- ggarrange(
-#   cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
-# )
-# 
-# mem_figure <- ggarrange(
-#   mem_used_plot, nrow = 1
-# )
+cpu_figure <- ggarrange(
+  cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
+)
+
+mem_figure <- ggarrange(
+  mem_used_plot, nrow = 1
+)
 
 
 # Create directories for exports with todays date and save figures into it
 dir.create(file.path(export_path), showWarnings = FALSE)
 
 dir.create(file.path(export_path, date_path), showWarnings = FALSE)
-setwd(file.path(export_path, date_path))
+#setwd(file.path(export_path, date_path))
+
 
 # get filenames
-# cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
-# mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
-# 
-# ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
-# ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
+cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
+mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
 
-png(filename="Test.png")
-plot(mem_used_plot)
-dev.off()
+ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
+ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
 
