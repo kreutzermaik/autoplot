@@ -30,8 +30,8 @@ measurements <- read.csv(file = "csv/collectl.csv", na="NA", stringsAsFactors = 
 
 # function to draw line plots
 drawPlot <- function(title, yAxisLabel, measurement, time) {
-    ggplot(measurements, aes(x=time, y=measurement, group=1)) +
-        geom_line(measurements, aes(x=time, y=measurement)) +
+    ggplot(measurements, aes(x=as.numeric(time), y=measurement)) +
+        geom_line() +
         scale_y_continuous(
             name = yAxisLabel,
         ) +
