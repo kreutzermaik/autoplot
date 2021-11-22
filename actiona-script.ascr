@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptfile>
+    <settings program="actiona" version="3.10.1" scriptVersion="1.1.0" os="GNU/Linux"/>
+    <actions>
+        <action name="ActionOpenURL" version="1.0.0"/>
+    </actions>
+    <parameters/>
+    <resources/>
+    <script pauseBefore="0" pauseAfter="0">
+        <action name="ActionOpenURL">
+            <exception id="0" action="0" line=""/>
+            <exception id="1" action="0" line=""/>
+            <exception id="2" action="1" line=""/>
+            <exception id="32" action="0" line=""/>
+            <parameter name="url">
+                <subParameter name="value" code="0">https://google.com</subParameter>
+            </parameter>
+        </action>
+        <action name="ActionOpenURL">
+            <exception id="0" action="0" line=""/>
+            <exception id="1" action="0" line=""/>
+            <exception id="2" action="1" line=""/>
+            <exception id="32" action="0" line=""/>
+            <parameter name="url">
+                <subParameter name="value" code="0">https://google.com</subParameter>
+            </parameter>
+        </action>
+        <action name="ActionOpenURL">
+            <exception id="0" action="0" line=""/>
+            <exception id="1" action="0" line=""/>
+            <exception id="2" action="1" line=""/>
+            <exception id="32" action="0" line=""/>
+            <parameter name="url">
+                <subParameter name="value" code="0">https://google.com</subParameter>
+            </parameter>
+        </action>
+        <action name="ActionOpenURL">
+            <exception id="0" action="0" line=""/>
+            <exception id="1" action="0" line=""/>
+            <exception id="2" action="1" line=""/>
+            <exception id="32" action="0" line=""/>
+            <parameter name="url">
+                <subParameter name="value" code="0">https://google.com</subParameter>
+            </parameter>
+        </action>
+    </script>
+</scriptfile>
