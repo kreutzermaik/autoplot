@@ -1,2 +1,2 @@
-# R-Skript starten
+#!/bin/bash
 Rscript app.R
