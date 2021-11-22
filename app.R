@@ -49,8 +49,7 @@ removeWhitespaceAndColon <- function(filename) {
 # cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", data_csv[[6]], data_csv[[2]])
 # cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", data_csv[[15]], data_csv[[2]])
 
-measurements <- subset(measurements, measurements$Time == 50)
-mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.Date, measurements$Time)
+mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used, measurements$Time)
 
 # # Build figures with multiple plots
 # cpu_figure <- ggarrange(
