@@ -101,5 +101,7 @@ setwd(file.path(export_path, date_path))
 # ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
 # ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
 
-ggexport(mem_used_plot, filename = "Test.png")
+png(filename="Test.png")
+plot(mem_used_plot)
+dev.off()
 
