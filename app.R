@@ -51,7 +51,14 @@ removeWhitespaceAndColon <- function(filename) {
 # cpu_system_plot <- drawPlot("CPU System", "CPU-Verbrauch (%)", data_csv[[5]], data_csv[[2]])
 # cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", data_csv[[6]], data_csv[[2]])
 # cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", data_csv[[15]], data_csv[[2]])
-mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used, measurements$Time)
+dataframe <- data.frame(
+  time = measurements$Time,
+  mem_used = measurements$X.MEM.Used
+)
+
+dataframe
+
+mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", dataframe$mem_used, dataframe$time)
 
 # # Build figures with multiple plots
 # cpu_figure <- ggarrange(
@@ -79,3 +86,6 @@ ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1
 
 
 mem_figure
+
+
+
