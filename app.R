@@ -7,7 +7,7 @@ library("gridExtra")
 library("ggpubr")
 
 
-# Path
+# Paths
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
 #export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
 
@@ -47,22 +47,18 @@ removeWhitespaceAndColon <- function(filename) {
 # call drawPlot function for each plot
 mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used, measurements$Time)
 
-# # Build figures with multiple plots
-cpu_figure <- ggarrange(
-  cpu_user_plot, cpu_nice_plot, cpu_system_plot, cpu_wait_plot, cpu_idle_plot, nrow = 5
-)
+# Build figures with multiple plots
+
 
 mem_figure <- ggarrange(
   mem_used_plot, nrow = 1
 )
-
 
 # Create directories for exports with todays date and save figures into it
 dir.create(file.path(export_path), showWarnings = FALSE)
 
 dir.create(file.path(export_path, date_path), showWarnings = FALSE)
 setwd(file.path(export_path, date_path))
-
 
 # get filenames
 #cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
