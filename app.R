@@ -31,13 +31,10 @@ measurements <- read.csv(file = "csv/collectl.csv", na="NA", stringsAsFactors = 
 # function to draw line plots
 drawPlot <- function(title, yAxisLabel, measurement, time) {
     ggplot(measurements, aes(x=time, y=measurement, group=1)) +
-        geom_line() +
-        scale_y_continuous(
-            name = yAxisLabel,
-        ) +
-        ggtitle(title)
+      geom_line() +
+      xlab("Year") +
+      ylab("Annual Average Temperature in 20 year increments")
 }
-
 
 removeWhitespaceAndColon <- function(filename) {
   filename <- chartr(":", "-", filename)
@@ -51,7 +48,9 @@ removeWhitespaceAndColon <- function(filename) {
 # cpu_system_plot <- drawPlot("CPU System", "CPU-Verbrauch (%)", data_csv[[5]], data_csv[[2]])
 # cpu_wait_plot <- drawPlot("CPU Wait", "CPU-Verbrauch (%)", data_csv[[6]], data_csv[[2]])
 # cpu_idle_plot <- drawPlot("CPU Idle", "CPU-Verbrauch (%)", data_csv[[15]], data_csv[[2]])
-mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used, measurements$Time)
+
+measurements <- subset(measurements, measurements$Time == 50)
+mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.Date, measurements$Time)
 
 # # Build figures with multiple plots
 # cpu_figure <- ggarrange(
@@ -79,4 +78,9 @@ ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1
 
 
 mem_figure
+
+
+
+
+
 
