@@ -11,7 +11,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 # Paths
 url = 'http://127.0.0.1:7777/'
-powerFile = '\csv\collectl_text.txt'
+powerFile = '\csv\collectl.csv'
 
 
 def init_driver(browser):
