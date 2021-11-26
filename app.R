@@ -17,10 +17,10 @@ library(ggpubr)
 
 
 # Path
-#base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
-#export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
-base_path <- "/var/lib/jenkins/workspace/Autoplot/"
-export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
+export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
+#base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+#export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 date_path <- toString(Sys.Date())
 
 

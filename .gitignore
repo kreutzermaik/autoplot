@@ -1,3 +1,7 @@
 .RData
 .Rhistory
 .Rproj.user
+chromedriver.exe
+geckodriver.log
+.idea
+node_modules

@@ -1,0 +1,7 @@
+{
+  "name": "autoplot",
+  "version": "1.0.0",
+  "dependencies": {
+    "selenium-webdriver": "^4.1.0"
+  }
+}
