@@ -10,7 +10,7 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
 
 # Paths
-url = 'http://127.0.0.1:7777/'
+url = 'https://www.google.com/'
 powerFile = '\csv\collectl.csv'
 
 
@@ -30,37 +30,6 @@ def start_nutzungsszenario(browser):
 
     # Open URL
     driver.get(url)
-    time.sleep(2)
-
-    # Click "Upload Messdaten" Button
-    driver.find_element(By.CSS_SELECTOR, "li:nth-child(2)").click()
-    time.sleep(1)
-
-    # Upload files
-    driver.find_element(By.ID, "LogFileMM").send_keys(os.getcwd() + powerFile)
-    time.sleep(1)
-    driver.find_element(By.ID, "PowerFileMM").send_keys(os.getcwd() + powerFile)
-    time.sleep(1)
-    driver.find_element(By.ID, "PerformanceFileMM").send_keys(os.getcwd() + powerFile)
-    time.sleep(1)
-    driver.find_element(By.ID, "LogFileBL").send_keys(os.getcwd() + powerFile)
-    time.sleep(1)
-    driver.find_element(By.ID, "PowerFileBL").send_keys(os.getcwd() + powerFile)
-    time.sleep(1)
-    driver.find_element(By.ID, "PerformanceFileBL").send_keys(os.getcwd() + powerFile)
-
-    time.sleep(3)
-
-    # Click "Konfiguration Bericht" Button
-    driver.find_element(By.CSS_SELECTOR, "li:nth-child(3)").click()
-    time.sleep(1)
-
-    # Click "Einstellungen speichern" Button
-    driver.find_element(By.ID, "saveSettingsButton").click()
-    time.sleep(1)
-
-    # Click "Bericht erzeugen" Button
-    driver.find_element(By.ID, "generateReportButton").click()
 
     # Wait and stop selenium
     time.sleep(5)
