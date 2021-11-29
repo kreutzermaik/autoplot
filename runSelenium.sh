@@ -1,2 +1,2 @@
 #!/bin/bash
-python seleniumFile.py
+python3 seleniumFile.py
