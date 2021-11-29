@@ -67,5 +67,4 @@ def start_nutzungsszenario(browser):
     driver.quit()
 
 
-start_nutzungsszenario("Chrome")
 start_nutzungsszenario("Firefox")
