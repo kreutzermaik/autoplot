@@ -20,6 +20,7 @@ def init_driver(browser):
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     elif browser == "Firefox":
         options = FirefoxOptions()
+        options.add_argument("--headless")
         driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
     return driver
 
@@ -32,7 +33,7 @@ def start_nutzungsszenario(browser):
     driver.get(url)
 
     # Wait and stop selenium
-    time.sleep(5)
+    time.sleep(10)
     driver.quit()
 
 
