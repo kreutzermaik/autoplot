@@ -2,22 +2,26 @@
 library("ggplot2")
 library("viridis")
 library("dplyr")
+library("hrbrthemes")
 library("hms")
 library("gridExtra")
 library("ggpubr")
 
 
-# Paths
+#Paths
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
 #export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
 
 base_path <- "/var/lib/jenkins/workspace/Autoplot/"
 export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 
-# base_path <- "~/workspace/autoplot/"
-# export_path <- "~/workspace/autoplot/export/"
+#base_path <- "~/workspace/autoplot/"
+#export_path <- "~/workspace/autoplot/export/"
 
 date_path <- toString(Sys.Date())
+csv_path <- "csv/collectl.csv"
+
+setwd(file.path(base_path))
 
 
 # Colors
@@ -26,7 +30,7 @@ yAxisColor <- "black"
 
 
 # Import CSV from Collectl
-measurements <- read.csv(file = "csv/collectl.csv", na="NA")
+measurements <- read.csv(file = csv_path, na="NA")
 
 
 # function to draw line plots
@@ -35,6 +39,14 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       geom_line() +
       xlab("Time in seconds") +
       ylab(yAxisLabel) +
+      theme_ipsum() +
+      theme(
+        axis.title.y = element_text(color = axisLabelColor, size=16),
+        axis.title.x = element_text(color = axisLabelColor, size=16),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none",
+      ) +
       ggtitle(title)
 }
 
@@ -45,11 +57,10 @@ removeWhitespaceAndColon <- function(filename) {
 
 
 # call drawPlot function for each plot
-mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used, measurements$Time)
+mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used / 1000, measurements$Time)
+
 
 # Build figures with multiple plots
-
-
 mem_figure <- ggarrange(
   mem_used_plot, nrow = 1
 )
