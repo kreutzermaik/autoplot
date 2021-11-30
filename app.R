@@ -6,6 +6,7 @@ library("hrbrthemes")
 library("hms")
 library("gridExtra")
 library("ggpubr")
+library("hms")
 
 
 #Paths
@@ -41,8 +42,8 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       ylab(yAxisLabel) +
       theme_ipsum() +
       theme(
-        axis.title.y = element_text(color = axisLabelColor, size=16),
-        axis.title.x = element_text(color = axisLabelColor, size=16),
+        axis.title.y = element_text(color = axisLabelColor, size=20),
+        axis.title.x = element_text(color = axisLabelColor, size=13),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
         legend.position = "none",
@@ -59,8 +60,9 @@ removeWhitespaceAndColon <- function(filename) {
 # call drawPlot function for each plot
 mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used / 1000, measurements$Time)
 
-
 # Build figures with multiple plots
+
+
 mem_figure <- ggarrange(
   mem_used_plot, nrow = 1
 )
@@ -77,10 +79,6 @@ mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
 
 #ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
 ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
-
-
-mem_figure
-
 
 
 
