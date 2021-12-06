@@ -13,11 +13,11 @@ library("hms")
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
 #export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
 
-base_path <- "/var/lib/jenkins/workspace/Autoplot/"
-export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+#base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+#export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 
-#base_path <- "~/workspace/autoplot/"
-#export_path <- "~/workspace/autoplot/export/"
+base_path <- "~/workspace/autoplot/"
+export_path <- "~/workspace/autoplot/export/"
 
 date_path <- toString(Sys.Date())
 csv_path <- "csv/collectl.csv"
@@ -32,7 +32,6 @@ yAxisColor <- "black"
 
 # Import CSV from Collectl
 measurements <- read.csv(file = csv_path, na="NA")
-
 
 # function to draw line plots
 drawPlot <- function(title, yAxisLabel, measurement, time) {
