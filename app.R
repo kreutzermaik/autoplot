@@ -13,11 +13,11 @@ library("hms")
 #base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
 #export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
 
-base_path <- "/var/lib/jenkins/workspace/Autoplot/"
-export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+#base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+#export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 
-#base_path <- "~/workspace/autoplot/"
-#export_path <- "~/workspace/autoplot/export/"
+base_path <- "~/workspace/autoplot/"
+export_path <- "~/workspace/autoplot/export/"
 
 date_path <- toString(Sys.Date())
 csv_path <- "csv/collectl.csv"
@@ -92,6 +92,6 @@ ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1
 ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
 
 
-cpu_figure
+mem_figure
 
 
