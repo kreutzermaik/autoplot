@@ -10,8 +10,8 @@ library("hms")
 
 
 #Paths
-base_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/"
-export_path <- "C:/Users/kreut/OneDrive/Uni/Bachelor-Thesis/Quellcode/CSV-Analyser/export/"
+base_path <- "C:/Users/kreut/Projekte/autoplot/"
+export_path <- "C:/Users/kreut/Projekte/autoplot/export/"
 
 #base_path <- "/var/lib/jenkins/workspace/Autoplot/"
 #export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
@@ -42,8 +42,8 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       ylab(yAxisLabel) +
       theme_ipsum() +
       theme(
-        axis.title.y = element_text(color = axisLabelColor, size=15),
-        axis.title.x = element_text(color = axisLabelColor, size=15),
+        axis.title.y = element_text(color = axisLabelColor, size=10),
+        axis.title.x = element_text(color = axisLabelColor, size=10),
         axis.ticks.x = element_blank(),
         legend.position = "none",
       ) +
@@ -81,13 +81,13 @@ dir.create(file.path(export_path, date_path), showWarnings = FALSE)
 setwd(file.path(export_path, date_path))
 
 # get filenames
-#cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
+cpu_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "CPU_figure.png"))
 mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
 
-#ggexport(cpu_figure, filename = paste(cpu_output_name), width = 1920, height = 1080)
-ggexport(mem_figure, filename = paste(mem_output_name), width = 1920, height = 1080)
+ggexport(cpu_figure, filename = paste(cpu_output_name))
+ggexport(mem_figure, filename = paste(mem_output_name))
 
 
-mem_figure
+cpu_figure
 
 
