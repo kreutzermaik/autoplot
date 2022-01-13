@@ -10,11 +10,11 @@ library("hms")
 
 
 #Paths
-#base_path <- "C:/Users/kreut/Projekte/autoplot/"
-#export_path <- "C:/Users/kreut/Projekte/autoplot/export"
+base_path <- "C:/Users/kreut/Projekte/autoplot/"
+export_path <- "C:/Users/kreut/Projekte/autoplot/export"
 
-base_path <- "/var/lib/jenkins/workspace/Autoplot/"
-export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+#base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+#export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 
 #base_path <- "~/workspace/autoplot/"
 #export_path <- "~/workspace/autoplot/export/"
@@ -75,8 +75,8 @@ time_in_seconds <- convertStringToNumeric(rownames(measurements)) -1
 mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch", "RAM used (MB)", measurements$X.MEM.Used / 1000, time_in_seconds)
 cpu_usage_plot <- drawPlot("CPU-Verbrauch", "CPU utilization (%)", cpu_usage / 1000, time_in_seconds)
 
-network_plot <- drawPlot("Netzwerk-Auslastung", "RxKBTot", measurements$X.NET.RxKBTot / 1000, time_in_seconds)
-cpu_usage_plot <- drawPlot("Netzwerk-Auslastung", "TxKBTot", measurements$X.NET.TxKBTot / 1000, time_in_seconds)
+network_R_plot <- drawPlot("Netzwerk-Auslastung (RxKBTot)", "RxKBTot", measurements$X.NET.RxKBTot / 1000, time_in_seconds)
+network_T_plot <- drawPlot("Netzwerk-Auslastung (TxKBTot)", "TxKBTot", measurements$X.NET.TxKBTot / 1000, time_in_seconds)
 
 
 # Build figures with multiple plots
@@ -87,7 +87,7 @@ cpu_figure <- ggarrange(
   cpu_usage_plot, nrow = 1
 )
 net_figure <- ggarrange(
-  network_plot, nrow = 1
+  network_R_plot, network_T_plot, nrow = 2
 )
 
 
@@ -109,4 +109,4 @@ ggexport(mem_figure, filename = paste(mem_output_name))
 ggexport(net_figure, filename = paste(net_output_name))
 
 
-
+net_figure
