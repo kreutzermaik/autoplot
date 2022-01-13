@@ -10,11 +10,11 @@ library("hms")
 
 
 #Paths
-base_path <- "C:/Users/kreut/Projekte/autoplot/"
-export_path <- "C:/Users/kreut/Projekte/autoplot/export"
+#base_path <- "C:/Users/kreut/Projekte/autoplot/"
+#export_path <- "C:/Users/kreut/Projekte/autoplot/export"
 
-#base_path <- "/var/lib/jenkins/workspace/Autoplot/"
-#export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
+base_path <- "/var/lib/jenkins/workspace/Autoplot/"
+export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
 
 #base_path <- "~/workspace/autoplot/"
 #export_path <- "~/workspace/autoplot/export/"
@@ -109,4 +109,3 @@ ggexport(mem_figure, filename = paste(mem_output_name))
 ggexport(net_figure, filename = paste(net_output_name))
 
 
-net_figure
