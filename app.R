@@ -31,9 +31,7 @@ app_name_path <- file.path(export_path, app_name)
 
 
 # Colors
-axisLabelColor <- "#e73700"
-yAxisColor <- "black"
-
+red_color <- "#e73700"
 
 # Import CSV from Collectl
 measurements <- read.csv(file = csv_path, na="NA", skip=0)
@@ -43,11 +41,12 @@ measurements <- read.csv(file = csv_path, na="NA", skip=0)
 drawPlot <- function(title, yAxisLabel, measurement, time) {
     ggplot(measurements, aes(x=time, y=measurement, group=1)) +
       geom_line() +
+      geom_hline(yintercept = mean(measurement), color=red_color) +
       xlab("Time (min)") +
       ylab("") +
       theme_ipsum() +
       theme(
-        axis.title.x = element_text(color = axisLabelColor, size=35),
+        axis.title.x = element_text(size=35),
         axis.text.x = element_text(size=15),
         axis.text.y = element_text(size=15),
         legend.position = "none",
