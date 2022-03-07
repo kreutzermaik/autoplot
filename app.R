@@ -29,21 +29,8 @@ app_name_path <- file.path(export_path, app_name)
 # Colors
 red_color <- "#e73700"
 
-setwd("csv")
-files <- list.files()
-
-for(i in sequence(length(files))){
-  yourData <- read.csv(file = files[i], na="NA", skip=0)
-  yourMeans <- apply(yourData$CPU.Idle, 1, mean)
-  yourMeans
-}
-
-#mean(yourData$X.CPU.Idle)
-
-setwd(file.path(base_path))
-
 # Import CSV from Collectl
-measurements <- read.csv(file = csv_path1, na="NA", skip=0)
+measurements <- read.csv(file = csv_path, na="NA", skip=0)
     
 # function to draw line plots
 drawPlot <- function(title, yAxisLabel, measurement, time) {
