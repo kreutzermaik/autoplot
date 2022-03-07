@@ -10,14 +10,11 @@ library("hms")
 
 
 #Paths
-# <- "C:/Users/kreut/Projekte/thesis/autoplot/"
+#base_path <- "C:/Users/kreut/Projekte/thesis/autoplot/"
 #export_path <- "C:/Users/kreut/Projekte/thesis/autoplot/export"
 
 base_path <- "/var/lib/jenkins/workspace/Autoplot/"
 export_path <- "/var/lib/jenkins/workspace/Autoplot/export/"
-
-#base_path <- "~/workspace/autoplot/"
-#export_path <- "~/workspace/autoplot/export/"
 
 setwd(file.path(base_path))
 
@@ -29,20 +26,31 @@ app_name_file_path <- "csv/app_name.txt"
 app_name <- readLines(app_name_file_path)
 app_name_path <- file.path(export_path, app_name)
 
-
 # Colors
 red_color <- "#e73700"
 
-# Import CSV from Collectl
-measurements <- read.csv(file = csv_path, na="NA", skip=0)
+setwd("csv")
+files <- list.files()
 
+for(i in sequence(length(files))){
+  yourData <- read.csv(file = files[i], na="NA", skip=0)
+  yourMeans <- apply(yourData$CPU.Idle, 1, mean)
+  yourMeans
+}
+
+#mean(yourData$X.CPU.Idle)
+
+setwd(file.path(base_path))
+
+# Import CSV from Collectl
+measurements <- read.csv(file = csv_path1, na="NA", skip=0)
     
 # function to draw line plots
 drawPlot <- function(title, yAxisLabel, measurement, time) {
     ggplot(measurements, aes(x=time, y=measurement, group=1)) +
       geom_line() +
       geom_hline(yintercept = mean(measurement), color=red_color) +
-      xlab("Time (min)") +
+      xlab("Time (s)") +
       ylab("") +
       theme_ipsum() +
       theme(
@@ -69,7 +77,7 @@ convertStringToNumeric <- function(str) {
 
 cpu_usage <- (100 - measurements$X.CPU.Idle) * 100
 time_in_seconds <- convertStringToNumeric(rownames(measurements)) -1
-time_in_seconds <- time_in_seconds / 60
+time_in_seconds <- time_in_seconds
 
 
 # call drawPlot function for each plot
