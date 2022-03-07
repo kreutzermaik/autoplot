@@ -81,10 +81,10 @@ time_in_seconds <- time_in_seconds
 
 
 # call drawPlot function for each plot
-cpu_usage_plot <- drawPlot("CPU-Verbrauch (%)", "CPU utilization (%)", cpu_usage / 1000, time_in_seconds)
+cpu_usage_plot <- drawPlot("CPU-Inanspruchnahme (%)", "CPU utilization (%)", cpu_usage / 1000, time_in_seconds)
 dsk_R_plot <- drawPlot("Gelesene Bytes (KB)", "Gelesene Bytes (KB)", measurements$X.DSK.ReadKBTot, time_in_seconds)
 dsk_T_plot <- drawPlot("Geschriebene Bytes (KB)", "Geschriebene Bytes (KB)", measurements$X.DSK.WriteKBTot, time_in_seconds)
-mem_used_plot <- drawPlot("Arbeitsspeicher-Verbrauch (MB)", "RAM used (MB)", measurements$X.MEM.Used / 1000, time_in_seconds)
+mem_used_plot <- drawPlot("Arbeitsspeicher-Inanspruchnahme (MB)", "RAM used (MB)", measurements$X.MEM.Used / 1000, time_in_seconds)
 network_R_plot <- drawPlot("Empfangene Bytes (KB)", "Empfangene Bytes (KB)", measurements$X.NET.RxKBTot, time_in_seconds)
 network_T_plot <- drawPlot("Übertragene Bytes (KB)", "Übertragene Bytes (KB)", measurements$X.NET.TxKBTot, time_in_seconds)
 
