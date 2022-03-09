@@ -109,4 +109,3 @@ ggexport(dsk_figure, filename = paste(dsk_output_name), width=1920, height=1080)
 ggexport(mem_figure, filename = paste(mem_output_name), width=1920, height=1080)
 ggexport(net_figure, filename = paste(net_output_name), width=1920, height=1080)
 
-cpu_figure
