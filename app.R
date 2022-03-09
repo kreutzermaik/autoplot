@@ -62,13 +62,12 @@ convertStringToNumeric <- function(str) {
   str <- as.numeric(str)
 }
 
-cpu_usage <- (100 - measurements$X.CPU.Idle) * 100
 time_in_seconds <- convertStringToNumeric(rownames(measurements)) -1
 time_in_seconds <- time_in_seconds
 
 
 # call drawPlot function for each plot
-cpu_usage_plot <- drawPlot("CPU-Inanspruchnahme (%)", "CPU utilization (%)", cpu_usage / 1000, time_in_seconds)
+cpu_usage_plot <- drawPlot("CPU-Inanspruchnahme (%)", "CPU utilization (%)", measurements$X.CPU.Totl., time_in_seconds)
 dsk_R_plot <- drawPlot("Gelesene Bytes (KB)", "Gelesene Bytes (KB)", measurements$X.DSK.ReadKBTot, time_in_seconds)
 dsk_T_plot <- drawPlot("Geschriebene Bytes (KB)", "Geschriebene Bytes (KB)", measurements$X.DSK.WriteKBTot, time_in_seconds)
 mem_used_plot <- drawPlot("Arbeitsspeicher-Inanspruchnahme (MB)", "RAM used (MB)", measurements$X.MEM.Used / 1000, time_in_seconds)
@@ -109,3 +108,5 @@ ggexport(cpu_figure, filename = paste(cpu_output_name), width=1920, height=1080)
 ggexport(dsk_figure, filename = paste(dsk_output_name), width=1920, height=1080)
 ggexport(mem_figure, filename = paste(mem_output_name), width=1920, height=1080)
 ggexport(net_figure, filename = paste(net_output_name), width=1920, height=1080)
+
+cpu_figure
