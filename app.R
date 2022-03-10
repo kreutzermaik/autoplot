@@ -41,11 +41,11 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       ylab("") +
       theme_ipsum() +
       theme(
-        axis.title.x = element_text(size=35),
+        axis.title.x = element_text(size=15),
         axis.text.x = element_text(size=15),
         axis.text.y = element_text(size=15),
         legend.position = "none",
-        plot.title = element_text(size=45)
+        plot.title = element_text(size=18)
       ) +
       ggtitle(title)
 } 
@@ -104,8 +104,9 @@ mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
 net_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "NET_figure.png"))
 
 
-ggexport(cpu_figure, filename = paste(cpu_output_name), width=1920, height=1080)
-ggexport(dsk_figure, filename = paste(dsk_output_name), width=1920, height=1080)
-ggexport(mem_figure, filename = paste(mem_output_name), width=1920, height=1080)
-ggexport(net_figure, filename = paste(net_output_name), width=1920, height=1080)
+ggexport(cpu_figure, filename = paste(cpu_output_name))
+ggexport(dsk_figure, filename = paste(dsk_output_name))
+ggexport(mem_figure, filename = paste(mem_output_name))
+ggexport(net_figure, filename = paste(net_output_name))
+
 
