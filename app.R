@@ -39,6 +39,7 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       geom_hline(yintercept = mean(measurement), color=red_color) +
       xlab("Time (s)") +
       ylab("") +
+      annotate("text",x=5,y=-3.1,label=paste("Durchschnitt: ", round(mean(measurement), digits = 2)), color=red_color) +
       theme_ipsum() +
       theme(
         axis.title.x = element_text(size=15),
@@ -49,6 +50,10 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       ) +
       ggtitle(title)
 } 
+
+#ggplot(df,aes(x,y))+geom_point()
+#+annotate("text",x=-1,y=-3.1,label="Scatterplot Display")
+#+coord_cartesian(ylim=c(-2.5,3),clip="off") #
 
 # function to replace whitespace and colons
 removeWhitespaceAndColon <- function(filename) {
@@ -108,5 +113,3 @@ ggexport(cpu_figure, filename = paste(cpu_output_name))
 ggexport(dsk_figure, filename = paste(dsk_output_name))
 ggexport(mem_figure, filename = paste(mem_output_name))
 ggexport(net_figure, filename = paste(net_output_name))
-
-
