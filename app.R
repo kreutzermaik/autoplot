@@ -39,7 +39,7 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       geom_hline(yintercept = mean(measurement), color=red_color) +
       xlab("Time (s)") +
       ylab("") +
-      annotate("text",x=5,y=-3.1,label=paste("Durchschnitt: ", round(mean(measurement), digits = 2)), color=red_color) +
+      annotate("text",x=3,y=mean(measurement)+1,label=round(mean(measurement), digits = 2)) +
       theme_ipsum() +
       theme(
         axis.title.x = element_text(size=15),
