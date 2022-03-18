@@ -7,6 +7,7 @@ library("hms")
 library("gridExtra")
 library("ggpubr")
 library("hms")
+library("filesstrings")
 
 
 #Paths
@@ -51,9 +52,6 @@ drawPlot <- function(title, yAxisLabel, measurement, time) {
       ggtitle(title)
 } 
 
-#ggplot(df,aes(x,y))+geom_point()
-#+annotate("text",x=-1,y=-3.1,label="Scatterplot Display")
-#+coord_cartesian(ylim=c(-2.5,3),clip="off") #
 
 # function to replace whitespace and colons
 removeWhitespaceAndColon <- function(filename) {
@@ -108,8 +106,16 @@ dsk_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "DSK_figure.png"))
 mem_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "MEM_figure.png"))
 net_output_name <- removeWhitespaceAndColon(paste(Sys.time(), "NET_figure.png"))
 
+# move csv file
+setwd(file.path(base_path))
+file.move("csv/collectl.csv", file.path(app_name_path, date_path))
+setwd(file.path(app_name_path, date_path))
+file.rename("collectl.csv", removeWhitespaceAndColon(paste(Sys.time(), "collectl.csv")))
 
+# generated images
 ggexport(cpu_figure, filename = paste(cpu_output_name))
 ggexport(dsk_figure, filename = paste(dsk_output_name))
 ggexport(mem_figure, filename = paste(mem_output_name))
 ggexport(net_figure, filename = paste(net_output_name))
+
+
