@@ -36,7 +36,10 @@ drawPlot <- function(title, yAxisLabel, xAxisLabel, metric) {
     ) +
     ggtitle(title) +
     scale_color_manual(values = c("Solid.js" = "blue", "SvelteKit" = "orange", "Next.js" = "green")) +
-    guides(color = guide_legend(title = NULL))
+    guides(color = guide_legend(title = NULL)) +
+    annotate("text", x = 5, y = mean(measurements[, metric]), label = paste(round(mean(measurements[, metric]), 2)), vjust = -1, hjust = 0, color = "blue") +
+    annotate("text", x = 15, y = mean(measurements2[, metric]), label = paste(round(mean(measurements2[, metric]), 2)), vjust = -1, hjust = 0, color = "orange") +
+    annotate("text", x = 25, y = mean(measurements3[, metric]), label = paste(round(mean(measurements3[, metric]), 2)), vjust = -1, hjust = 0, color = "green")
 }
 
 # call drawPlot function for each plot
@@ -47,9 +50,9 @@ mem_used_plot <- drawPlot("Arbeitsspeicher-Inanspruchnahme", "RAM used (MB)", "Z
 network_R_plot <- drawPlot("Empfangene Bytes", "Empfangene Bytes (KB)", "Zeit (s)",  "X.NET.RxKBTot")
 network_T_plot <- drawPlot("Uebertragene Bytes", "Uebertragene Bytes (KB)", "Zeit (s)",  "X.NET.TxKBTot")
 
-# print(cpu_usage_plot)
+print(cpu_usage_plot)
 # print(dsk_R_plot)
 # print(dsk_T_plot)
-print(mem_used_plot)
+# print(mem_used_plot)
 # print(network_R_plot)
 # print(network_T_plot)
